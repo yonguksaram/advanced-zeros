@@ -1,27 +1,21 @@
 module.exports = function getZerosCount(number, base) {
   let maxDiv = base;
-  for (let i=maxDiv; i>1; i--) {
-    if (maxDiv%i==0) {
+  for (let i = maxDiv; i > 1; i--) {
+    if (maxDiv % i == 0) {
       maxDiv = i;
     }
   }
   let countMaxDiv = 0;
   let countMaxBase = base;
-  while (true) {
-    if (countMaxBase % maxDiv == 0) {
-      countMaxDiv++;
-      countMaxBase = countMaxBase / maxDiv;
-    } else {
-      break
-    }
+  while (countMaxBase % maxDiv == 0) {
+    countMaxDiv++;
+    countMaxBase = countMaxBase / maxDiv;
   }
   let power = 0;
   let powerMax = 1;
-  while (true) {
+  while (number / powerMax > 1) {
     powerMax *= maxDiv;
-    power += Math.floor(number/powerMax);
-    if (number/powerMax <= 1)
-      break
+    power += Math.floor(number / powerMax);
   }
-    return Math.floor(power/countMaxDiv)
+  return Math.floor(power / countMaxDiv)
 }
